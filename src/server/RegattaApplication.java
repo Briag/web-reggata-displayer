@@ -16,9 +16,10 @@ public class RegattaApplication extends Application {
 
     @Override
     public Restlet createInboundRoot() {
-        Directory directory = new Directory(getContext(), "clap://class/static/");
+        Directory directory = new Directory(getContext(), "clap://system/resources/static/");
         directory.setDeeplyAccessible(true);
 
+        System.out.println(directory.getRootRef().getPath());
         Router router = new Router(getContext());
         router.attach("/web", directory);
         return router;
