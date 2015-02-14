@@ -5,6 +5,8 @@ import org.restlet.Restlet;
 import org.restlet.resource.Directory;
 import org.restlet.routing.Router;
 
+import server.resource.RegattaResource;
+
 public class RegattaApplication extends Application {
 
     public RegattaApplication() {
@@ -21,7 +23,11 @@ public class RegattaApplication extends Application {
 
         System.out.println(directory.getRootRef().getPath());
         Router router = new Router(getContext());
+        // The AngluarJS direcory
         router.attach("/web", directory);
+        
+
+        router.attach("/rest/regatta/{regattaId}",RegattaResource.class);
         return router;
     }
 }
