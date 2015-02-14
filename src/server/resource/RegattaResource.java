@@ -1,5 +1,6 @@
 package server.resource;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -51,5 +52,26 @@ public class RegattaResource extends ServerResource {
 
 		return new JacksonRepresentation<Regatta>(regatta);
 	}
+	
+	 @Put("json")
+	    public void update(Representation representation) throws IOException {
+		 	
+	        JacksonRepresentation<Regatta> jsonRepresentation = new JacksonRepresentation<Regatta>(representation, Regatta.class);
+	        System.out.println(jsonRepresentation.getText());
+	        Regatta regatta = jsonRepresentation.getObject();
+	        
+
+			EntityManager em = Base.getBase().getEntityManager();
+			EntityTransaction tx = em.getTransaction();
+			tx.begin();
+			
+			em.persist(regatta);	        
+	        tx.commit();
+	    }
+	 
+	    @Delete
+	    public void remove() {
+	        
+	    }
 	
 }
