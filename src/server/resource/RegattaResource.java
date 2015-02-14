@@ -39,7 +39,7 @@ public class RegattaResource extends ServerResource {
 		//Query
 		Query query = em.createQuery(
 				"select r from Regatta r where id = :id")
-				.setParameter("id", Integer.valueOf((String) attributes.get("regattaId")));
+				.setParameter("id", Integer.valueOf((String) attributes.get("idRegatta")));
 		
 		System.out.println(attributes.toString());
 		
@@ -57,7 +57,6 @@ public class RegattaResource extends ServerResource {
 	    public void update(Representation representation) throws IOException {
 		 	
 	        JacksonRepresentation<Regatta> jsonRepresentation = new JacksonRepresentation<Regatta>(representation, Regatta.class);
-	        System.out.println(jsonRepresentation.getText());
 	        Regatta regatta = jsonRepresentation.getObject();
 	        
 
@@ -65,13 +64,30 @@ public class RegattaResource extends ServerResource {
 			EntityTransaction tx = em.getTransaction();
 			tx.begin();
 			
-			em.persist(regatta);	        
+			em.merge(regatta);	        
 	        tx.commit();
 	    }
 	 
 	    @Delete
 	    public void remove() {
-	        
+			
+			
+			Map<String, Object> attributes = getRequest().getAttributes();
+			
+			EntityManager em = Base.getBase().getEntityManager();
+
+			EntityTransaction tx = em.getTransaction();
+			tx.begin();
+			
+	    	Query query = em.createQuery(
+					"delete Regatta where id = :id")
+					.setParameter("id", Integer.valueOf((String) attributes.get("idRegatta")));
+			
+	    	System.out.println(Integer.valueOf((String) attributes.get("idRegatta")));
+	    	
+	    	query.executeUpdate();
+	    	
+	        tx.commit();
 	    }
 	
 }

@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "regatta")
 public class Regatta implements Serializable  {
@@ -22,7 +24,7 @@ public class Regatta implements Serializable  {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idRegatta;
 	
 	@Column(name = "name", nullable = false, insertable = false, updatable = false)
@@ -30,12 +32,12 @@ public class Regatta implements Serializable  {
 	
 	public Regatta() { }
 
-	public int getregattaId() {
+	public int getIdRegatta() {
 		return idRegatta;
 	}
 
-	public void setregattaId(int regattaId) {
-		this.idRegatta = regattaId;
+	public void setIdRegatta(int idRegatta) {
+		this.idRegatta = idRegatta;
 	}
 
 	public String getName() {

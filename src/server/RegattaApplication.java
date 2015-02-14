@@ -5,6 +5,7 @@ import org.restlet.Restlet;
 import org.restlet.resource.Directory;
 import org.restlet.routing.Router;
 
+import server.resource.RegattaListResource;
 import server.resource.RegattaResource;
 
 public class RegattaApplication extends Application {
@@ -18,7 +19,7 @@ public class RegattaApplication extends Application {
 
     @Override
     public Restlet createInboundRoot() {
-        Directory directory = new Directory(getContext(), "clap://system/resources/static/");
+        Directory directory = new Directory(getContext(), "clap://class/resources/static/");
         directory.setDeeplyAccessible(true);
 
         System.out.println(directory.getRootRef().getPath());
@@ -26,8 +27,8 @@ public class RegattaApplication extends Application {
         // The AngluarJS direcory
         router.attach("/web", directory);
         
-
-        router.attach("/rest/regatta/{regattaId}",RegattaResource.class);
+        router.attach("/rest/regatta/{idRegatta}",RegattaResource.class);
+        router.attach("/rest/regatta",RegattaListResource.class);
         return router;
     }
 }
