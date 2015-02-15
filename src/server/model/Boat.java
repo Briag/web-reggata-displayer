@@ -1,46 +1,38 @@
 package server.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
-@Table(name = "regatta")
-public class Regatta implements Serializable  {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+@Table(name = "boat")
+public class Boat  implements Serializable {
+
+	private static final long serialVersionUID = 5624500974397501979L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int idRegatta;
+	private int idBoat;
 	
 	@Column(name = "name", nullable = false, insertable = false, updatable = false)
 	private String name;
 
-	public Regatta() { }
+	@Column(name = "photo")
+	private String photo;
 	
 	
-	public int getIdRegatta() {
-		return idRegatta;
+	public int getIdBoat() {
+		return idBoat;
 	}
 
-	public void setIdRegatta(int idRegatta) {
-		this.idRegatta = idRegatta;
+	public void setIdBoat(int idBoat) {
+		this.idBoat = idBoat;
 	}
-
 	public String getName() {
 		return name;
 	}
@@ -49,4 +41,12 @@ public class Regatta implements Serializable  {
 		this.name = name;
 	};
 	
+	
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 }

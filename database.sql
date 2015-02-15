@@ -23,7 +23,8 @@ USE `regatta` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `regatta`.`Boat` (
   `idBoat` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `photo` VARCHAR(90) NOT NULL,
   PRIMARY KEY (`idBoat`))
 ENGINE = InnoDB;
 
