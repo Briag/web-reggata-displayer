@@ -39,6 +39,11 @@ app.factory('Boat', ['$resource', function ($resource) {
         '../rest/boat/:id', { 'id': '@idBoat'}, {'update': {method: 'PUT'} });
 }]);
 
+app.factory('Teammate', ['$resource', function ($resource) {
+    return $resource(
+        '../rest/teammate/:id', { 'id': '@idTeammate'}, {'update': {method: 'PUT'} });
+}]);
+
 // ============================== CONTROLLERS ==============================
 
 app.controller('ListController', ['$scope', 'Regatta', '$location', function ($scope, Regatta, $location) {
