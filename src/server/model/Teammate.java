@@ -16,7 +16,7 @@ public class Teammate implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -31,6 +31,8 @@ public class Teammate implements Serializable {
 	@Column(name = "description", nullable = false, insertable = false, updatable = false)
 	private String description;
 
+	public Teammate() {
+	}
 	public int getIdTeammate() {
 		return idTeammate;
 	}

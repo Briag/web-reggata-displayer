@@ -23,8 +23,8 @@ USE `regatta` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `regatta`.`Boat` (
   `idBoat` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `photo` VARCHAR(90) NOT NULL,
+  `name` VARCHAR(45) NULL,
+  `photo` VARCHAR(90) NULL,
   PRIMARY KEY (`idBoat`))
 ENGINE = InnoDB;
 
@@ -34,7 +34,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `regatta`.`Regatta` (
   `idRegatta` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(45) NULL,
   PRIMARY KEY (`idRegatta`))
 ENGINE = InnoDB;
 
@@ -44,8 +44,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `regatta`.`Teammate` (
   `idTeammate` INT NOT NULL AUTO_INCREMENT,
-  `lastname` VARCHAR(45) NOT NULL,
-  `firstname` VARCHAR(45) NOT NULL,
+  `lastname` VARCHAR(45) NULL,
+  `firstname` VARCHAR(45) NULL,
   `description` VARCHAR(100) NULL,
   PRIMARY KEY (`idTeammate`))
 ENGINE = InnoDB;
