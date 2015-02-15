@@ -11,11 +11,12 @@ import org.restlet.ext.jackson.JacksonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
+import org.restlet.resource.ServerResource;
 
 import server.Base;
 import server.model.Teammate;;
 
-public class TeammateListResource {
+public class TeammateListResource extends ServerResource {
 	
 	@Get
 	public Representation list() {
