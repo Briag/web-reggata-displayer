@@ -7,6 +7,8 @@ import org.restlet.routing.Router;
 
 import server.resource.RegattaListResource;
 import server.resource.RegattaResource;
+import server.resource.TeammateListResource;
+import server.resource.TeammateResource;
 
 public class RegattaApplication extends Application {
 
@@ -29,6 +31,10 @@ public class RegattaApplication extends Application {
         
         router.attach("/rest/regatta/{idRegatta}",RegattaResource.class);
         router.attach("/rest/regatta",RegattaListResource.class);
+        
+        router.attach("/rest/teammate/{idTeammate}",TeammateResource.class);
+        router.attach("/rest/teammate",TeammateListResource.class);
+        
         return router;
     }
 }
