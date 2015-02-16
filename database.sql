@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `regatta`.`Teammate` (
   `idTeammate` INT NOT NULL AUTO_INCREMENT,
   `lastname` VARCHAR(45) NULL,
   `firstname` VARCHAR(45) NULL,
-  `description` VARCHAR(100) NULL,
+  `description` TEXT NULL,
   PRIMARY KEY (`idTeammate`))
 ENGINE = InnoDB;
 
@@ -57,6 +57,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `regatta`.`Team` (
   `idTeam` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
+  `description` TEXT NULL,
   `Boat_idBoat` INT NOT NULL,
   PRIMARY KEY (`idTeam`, `Boat_idBoat`),
   INDEX `fk_Team_Boat_idx` (`Boat_idBoat` ASC),

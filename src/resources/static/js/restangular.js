@@ -19,6 +19,11 @@ var app = angular.module('restangular.app', ['ngResource']);
 // ============================== APPLICATION ==============================
 
 app.config(function ($routeProvider, $locationProvider) {
+	$routeProvider.when('/admin/teammate/list', {templateUrl: 'view/teammate/list.html', controller: 'TeammateListController'});
+    $routeProvider.when('/admin/teammate/add', {templateUrl: 'view/teammate/add.html', controller: 'TeammateAddController'});
+    $routeProvider.when('/admin/teammate/:id/edit', {templateUrl: 'view/teammate/add.html', controller: 'TeammmateEditController'});
+    $routeProvider.when('/admin/teammate/:id', {templateUrl: 'view/teammate/display.html', controller: 'TeammateDisplayController'});
+   
     $routeProvider.when('/list', {templateUrl: 'view/list.html', controller: 'ListController'});
     $routeProvider.when('/add', {templateUrl: 'view/add.html', controller: 'AddController'});
     $routeProvider.when('/:id/edit', {templateUrl: 'view/add.html', controller: 'EditController'});
@@ -85,5 +90,49 @@ app.controller('EditController', ['$scope', 'Regatta', '$routeParams', '$locatio
 
 app.controller('DisplayController', ['$scope', 'Regatta', '$routeParams', function ($scope, Regatta, $routeParams) {
     $scope.regatta = Regatta.get({id: $routeParams.id});
+}]);
+
+
+
+
+app.controller('TeammateListController', ['$scope', 'Teammate', '$location', function ($scope, Teammate, $location) {
+    console.log("Error");
+	$scope.teammates = Teammate.query();
+	
+    console.log($scope.teammates);
+    console.log(JSOG.decode($scope.teammates));
+    
+    $scope.deleteTeammate = function (teammate) {
+    	teammate.$delete(function () {
+            $location.path("admin/teammate/list");
+        });
+    };
+    $scope.toggleTeammate = function (teammate) {
+    	teammate.$update(function () {
+            $location.path('admin/teammate/list');
+        });
+    };
+}]);
+
+app.controller('TeammateAddController', ['$scope', 'Teammate', '$routeParams', '$location', function ($scope, Teammate, $routeParams, $location) {
+    $scope.teammate = new Teammate();
+    $scope.saveTeammate = function () {
+    	Teammate.save($scope.teammate, function () {
+            $location.path('admin/teammate/list');
+        });
+    };
+}]);
+
+app.controller('TeammateEditController', ['$scope', 'Teammate', '$routeParams', '$location', function ($scope, Teammate, $routeParams, $location) {
+    $scope.teammate = Teammate.get({id: $routeParams.id});
+    $scope.saveTeammate = function () {
+    	Regatta.update($scope.teammate, function () {
+            $location.path('admin/teammate/list');
+        });
+    };
+}]);
+
+app.controller('TeammateDisplayController', ['$scope', 'Teammate', '$routeParams', function ($scope, Teammate, $routeParams) {
+    $scope.teammate = Teammate.get({id: $routeParams.id});
 }]);
 
