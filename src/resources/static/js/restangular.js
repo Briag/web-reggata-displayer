@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-var app = angular.module('restangular.app', ['ngResource']);
+var app = angular.module('restangular.app', ['ngResource', 'ngRoute']);
 
 // ============================== APPLICATION ==============================
 
 app.config(function ($routeProvider, $locationProvider) {
 	$routeProvider.when('/admin/teammate/list', {templateUrl: 'view/teammate/list.html', controller: 'TeammateListController'});
     $routeProvider.when('/admin/teammate/add', {templateUrl: 'view/teammate/add.html', controller: 'TeammateAddController'});
-    $routeProvider.when('/admin/teammate/:id/edit', {templateUrl: 'view/teammate/add.html', controller: 'TeammmateEditController'});
+    $routeProvider.when('/admin/teammate/:id/edit', {templateUrl: 'view/teammate/add.html', controller: 'TeammateEditController'});
     $routeProvider.when('/admin/teammate/:id', {templateUrl: 'view/teammate/display.html', controller: 'TeammateDisplayController'});
    
     $routeProvider.when('/list', {templateUrl: 'view/list.html', controller: 'ListController'});
@@ -32,6 +32,20 @@ app.config(function ($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('!'); // Enable ajax crawling
 });
 
+app.config(function($httpProvider) {
+
+    $httpProvider.defaults.transformResponse.push(function(data,headersGetter){
+    	if(headersGetter()['content-type'] === "application/json")
+    	{	console.log(":D");return JSOG.decode(data);
+    	}
+    	return data;
+    });
+    
+    $httpProvider.defaults.transformRequest.unshift(function(data,headersGetter){
+    	return JSOG.encode(data);
+    });
+
+})
 // ============================== RESOURCES ==============================
 
 app.factory('Regatta', ['$resource', function ($resource) {
@@ -96,12 +110,7 @@ app.controller('DisplayController', ['$scope', 'Regatta', '$routeParams', functi
 
 
 app.controller('TeammateListController', ['$scope', 'Teammate', '$location', function ($scope, Teammate, $location) {
-    console.log("Error");
 	$scope.teammates = Teammate.query();
-	
-    console.log($scope.teammates);
-    console.log(JSOG.decode($scope.teammates));
-    
     $scope.deleteTeammate = function (teammate) {
     	teammate.$delete(function () {
             $location.path("admin/teammate/list");
@@ -125,8 +134,9 @@ app.controller('TeammateAddController', ['$scope', 'Teammate', '$routeParams', '
 
 app.controller('TeammateEditController', ['$scope', 'Teammate', '$routeParams', '$location', function ($scope, Teammate, $routeParams, $location) {
     $scope.teammate = Teammate.get({id: $routeParams.id});
+    console.log($scope.teammate);
     $scope.saveTeammate = function () {
-    	Regatta.update($scope.teammate, function () {
+    	Teammate.update($scope.teammate, function () {
             $location.path('admin/teammate/list');
         });
     };

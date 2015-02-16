@@ -21,6 +21,7 @@ import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
 @Entity
 @Table(name = "teammate")
+@JsonIdentityInfo(generator=JSOGGenerator.class)
 public class Teammate implements Serializable {
 
 	/**
@@ -43,8 +44,7 @@ public class Teammate implements Serializable {
 	
 	
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="teammates")	
-	@JsonBackReference
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy="teammates")	
 	private Set<Team> teams;
 	
 

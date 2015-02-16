@@ -76,8 +76,6 @@
     found = {};
     doDecode = function(encoded) {
       var decodeArray, decodeObject;
-
-      console.log("Decode");
       decodeObject = function(encoded) {
         var id, key, ref, result, value;
 
@@ -96,7 +94,6 @@
         if (id) {
           found[id] = result;
         }
-        console.log(id);
         for (key in encoded) {
           value = encoded[key];
           if (key !== '@id') {
@@ -107,15 +104,10 @@
       };
       decodeArray = function(encoded) {
         var value;
-        
-        var array = [1,2,3,4];
-        console.log(array);
-        console.log(encoded);
         return (function() {
           var _i, _len, _results;
 
           _results = [];
-          console.log(encoded);
           for (_i = 0, _len = encoded.length; _i < _len; _i++) {
 
             value = encoded[_i];

@@ -85,6 +85,7 @@ public class TeammateResource extends ServerResource{
 	    	query.executeUpdate();
 	    	
 	        tx.commit();
+	        
 	    }
 	
 }

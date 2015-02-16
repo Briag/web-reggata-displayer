@@ -14,15 +14,19 @@
   ~ limitations under the License.
   -->
 
-<h2>Edit boat</h2>
+<h2>Teammate edit</h2>
 
 <form>
     <div class="form-group">
-        <label for="description">Name</label>
-        <textarea id="description" class="form-control" name="description" ng-model="boat.name"></textarea>
+        <label for="description">Firstname</label>
+        <textarea id="description" class="form-control" name="description" ng-model="teammate.firstname"></textarea>
+        <label for="description">Lastname</label>
+        <textarea id="description" class="form-control" name="description" ng-model="teammate.lastname"></textarea>
+        <label for="description">Description</label>
+        <textarea id="description" class="form-control" name="description" ng-model="teammate.description"></textarea>
     </div>
 
     <hr/>
-    <button ng-click="saveBoat()" class="btn btn-success">Save</button>
+    <button ng-click="saveTeammate()" class="btn btn-success">Save</button>
     <a href="#!/list" class="btn btn-default">Cancel</a>
 </form>

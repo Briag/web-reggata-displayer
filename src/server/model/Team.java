@@ -24,6 +24,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "team")
+@JsonIdentityInfo(generator=JSOGGenerator.class)
 public class Team implements Serializable {
 
 	private static final long serialVersionUID = 2L;
@@ -65,13 +66,12 @@ public class Team implements Serializable {
 		this.description = description;
 	}
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 			name="teamcomposition",
 			joinColumns = @JoinColumn( name="Team_idTeam"),
 			inverseJoinColumns = @JoinColumn( name="Teammate_idTeammate")
 	) 
-	@JsonManagedReference
 	private Set<Teammate> teammates;
 	
 	public Set<Teammate> getTeammates() { return teammates; }
