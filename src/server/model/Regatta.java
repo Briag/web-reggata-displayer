@@ -14,8 +14,12 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
+
 @Entity
 @Table(name = "regatta")
+@JsonIdentityInfo(generator=JSOGGenerator.class)
 public class Regatta implements Serializable  {
 	
 	/**
