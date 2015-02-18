@@ -54,14 +54,14 @@
 <div class="row">
 	<div class="col-lg-6">
 		<rd-widget>
-      		<rd-widget-header icon="fa-tasks" title="Regatta">
-				<a href="#">Manage</a>
+      		<rd-widget-header icon="fa-flag-checkered" title="Regatta">
+				<a href="#/regatta/manage">Manage</a>
       		</rd-widget-header>
       		<rd-widget-body classes="medium no-padding">
 				<div class="table-responsive">
 					<table class="table">
 						<tbody>
-							<tr data-ng-repeat="regatta in regattas"><td>{{regatta.name}}</td><td>3 Equipes inscrites</td><td><a href="#/regatta/edit/{{regatta.idRegatta}}"><i class="fa fa-pencil"></i></a></td></tr>
+							<tr data-ng-repeat="regatta in regattas"><td>{{regatta.name}}</td><td>3 Equipes inscrites</td><td><a href="#/regatta/edit/{{regatta.idRegatta}}"><i class="fa fa-pencil"></i></a><td></td></td></tr>
 						</tbody>
 					</table>
 				</div>
