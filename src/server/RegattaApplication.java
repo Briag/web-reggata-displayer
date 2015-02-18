@@ -31,10 +31,12 @@ public class RegattaApplication extends Application {
         
         router.attach("/rest/regatta/{idRegatta}",RegattaResource.class);
         router.attach("/rest/regatta",RegattaListResource.class);
-        
+                
         router.attach("/rest/teammate/{idTeammate}",TeammateResource.class);
         router.attach("/rest/teammate",TeammateListResource.class);
         
+        router.attach("/rest/boat/{idBoat}",RegattaResource.class);
+        router.attach("/rest/boat",RegattaListResource.class);
         return router;
     }
 }

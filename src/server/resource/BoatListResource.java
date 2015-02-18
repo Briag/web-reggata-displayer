@@ -14,11 +14,10 @@ import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
 import server.Base;
-import server.model.Teammate;;
+import server.model.Boat;
+import server.model.Regatta;
 
-
-public class TeammateListResource extends ServerResource {
-
+public class BoatListResource extends ServerResource {
 	
 	@Get
 	public Representation list() {
@@ -27,26 +26,25 @@ public class TeammateListResource extends ServerResource {
 
 		//Query
 		Query query = em.createQuery(
-				"select t from Teammate t");
+				"select r from Boat r");
 				
-		List<Teammate> results = query.getResultList();
+		List<Boat> results = query.getResultList();
 
-	    return new JacksonRepresentation<List<Teammate>>(results);
+	    return new JacksonRepresentation<List<Boat>>(results);
 	}
 	
 	 @Post("json")
 	 public void create(Representation representation) throws IOException {
 		 	
-	    JacksonRepresentation<Teammate> jsonRepresentation = new JacksonRepresentation<Teammate>(representation, Teammate.class);
-        Teammate teammate = jsonRepresentation.getObject();
+	    JacksonRepresentation<Boat> jsonRepresentation = new JacksonRepresentation<Boat>(representation, Boat.class);
+        Boat boat = jsonRepresentation.getObject();
 	
-        System.out.println(teammate.getFirstname());
 		EntityManager em = Base.getBase().getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
-		em.persist(teammate);	        
+		em.persist(boat);	
+		
 	    tx.commit();
 	}	
-
 }
