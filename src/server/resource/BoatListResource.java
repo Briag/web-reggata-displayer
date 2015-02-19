@@ -15,7 +15,6 @@ import org.restlet.resource.ServerResource;
 
 import server.Base;
 import server.model.Boat;
-import server.model.Regatta;
 
 public class BoatListResource extends ServerResource {
 	

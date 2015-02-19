@@ -5,8 +5,12 @@ import org.restlet.Restlet;
 import org.restlet.resource.Directory;
 import org.restlet.routing.Router;
 
+import server.resource.BoatListResource;
+import server.resource.BoatResource;
 import server.resource.RegattaListResource;
 import server.resource.RegattaResource;
+import server.resource.TeamListResource;
+import server.resource.TeamResource;
 import server.resource.TeammateListResource;
 import server.resource.TeammateResource;
 
@@ -35,8 +39,13 @@ public class RegattaApplication extends Application {
         router.attach("/rest/teammate/{idTeammate}",TeammateResource.class);
         router.attach("/rest/teammate",TeammateListResource.class);
         
-        router.attach("/rest/boat/{idBoat}",RegattaResource.class);
-        router.attach("/rest/boat",RegattaListResource.class);
+        router.attach("/rest/boat/{idBoat}",BoatResource.class);
+        router.attach("/rest/boat",BoatListResource.class);
+        
+        router.attach("/rest/team/{idTeam}",TeamResource.class);
+        router.attach("/rest/team",TeamListResource.class);
+        
+        
         return router;
     }
 }

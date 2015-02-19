@@ -20,6 +20,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -76,6 +77,21 @@ public class Team implements Serializable {
 	
 	public Set<Teammate> getTeammates() { return teammates; }
     void setTeammates(Set<Teammate> teammates) { this.teammates = teammates; }
+    
+	
+    
+   @ManyToOne(fetch = FetchType.LAZY)
+	private Boat boat;
+	
+	public Boat getBoat() { return boat; }
+    void setBoat(Boat boat) { this.boat = boat; }
+    
+    
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy="teams")	
+	private Set<Regatta> regattas;
+	
+	public Set<Regatta> getRegattas() { return regattas; }
+    void setRegattas(Set<Regatta> regattas) { this.regattas = regattas; }
 
     
 }
