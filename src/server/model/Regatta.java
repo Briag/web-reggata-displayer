@@ -2,13 +2,17 @@ package server.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -53,4 +57,14 @@ public class Regatta implements Serializable  {
 		this.name = name;
 	};
 	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+			name="inscription",
+			joinColumns = @JoinColumn( name="Regatta_idRegatta"),
+			inverseJoinColumns = @JoinColumn( name="Team_idTeam")
+	) 
+	private Set<Team> teams;
+	
+	public Set<Team> getTeam() { return teams; }
+    void setTeam(Set<Team> team) { this.teams = team; }
 }

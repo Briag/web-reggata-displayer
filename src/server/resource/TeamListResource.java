@@ -14,7 +14,8 @@ import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
 import server.Base;
-import server.model.Teammate;;
+import server.model.Team;
+import server.model.Teammate;
 
 public class TeamListResource extends ServerResource{
 	
@@ -25,11 +26,11 @@ public class TeamListResource extends ServerResource{
 
 		//Query
 		Query query = em.createQuery(
-				"select t from Teammate t");
+				"select t from Team t");
 				
-		List<Teammate> results = query.getResultList();
+		List<Team> results = query.getResultList();
 
-	    return new JacksonRepresentation<List<Teammate>>(results);
+	    return new JacksonRepresentation<List<Team>>(results);
 	}
 	
 	 @Post("json")

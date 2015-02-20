@@ -16,7 +16,9 @@ import org.restlet.resource.ServerResource;
 import server.Base;
 import server.model.Teammate;;
 
-public class TeammateListResource extends ServerResource{
+
+public class TeammateListResource extends ServerResource {
+
 	
 	@Get
 	public Representation list() {
