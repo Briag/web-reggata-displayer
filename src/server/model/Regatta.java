@@ -57,7 +57,7 @@ public class Regatta implements Serializable  {
 		this.name = name;
 	};
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany
 	@JoinTable(
 			name="inscription",
 			joinColumns = @JoinColumn( name="Regatta_idRegatta"),

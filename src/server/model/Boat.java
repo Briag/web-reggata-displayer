@@ -9,8 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
+
 @Entity
 @Table(name = "boat")
+@JsonIdentityInfo(generator=JSOGGenerator.class)
 public class Boat  implements Serializable {
 
 	private static final long serialVersionUID = 5624500974397501979L;

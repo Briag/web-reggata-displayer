@@ -67,7 +67,7 @@ public class Team implements Serializable {
 		this.description = description;
 	}
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany
 	@JoinTable(
 			name="teamcomposition",
 			joinColumns = @JoinColumn( name="Team_idTeam"),
@@ -80,14 +80,14 @@ public class Team implements Serializable {
     
 	
     
-   @ManyToOne(fetch = FetchType.LAZY)
+   @ManyToOne
 	private Boat boat;
 	
 	public Boat getBoat() { return boat; }
     void setBoat(Boat boat) { this.boat = boat; }
     
     
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy="teams")	
+	@ManyToMany(mappedBy="teams")	
 	private Set<Regatta> regattas;
 	
 	public Set<Regatta> getRegattas() { return regattas; }
