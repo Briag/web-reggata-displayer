@@ -44,7 +44,7 @@ public class Teammate implements Serializable {
 	
 	
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy="teammates")	
+	@ManyToMany(mappedBy="teammates")	
 	private Set<Team> teams;
 	
 
