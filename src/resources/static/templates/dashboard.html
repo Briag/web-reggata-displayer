@@ -4,118 +4,119 @@
   </div>
 </div>
 
-<div class="row">
-	<div class="col-lg-3 col-md-6 col-xs-12">
-		<rd-widget>
-			<rd-widget-body>
-				<div class="widget-icon green pull-left">
-					<i class="fa fa-flag-checkered"></i>
-				</div>
-				<div class="title">{{regattas.length}}</div>
-				<div class="comment">Regattas</div>
-			</rd-widget-body>
-		</rd-widget>
+<div data-ng-controller="DashboardCtrl">
+	<div class="row">
+		<div class="col-lg-3 col-md-6 col-xs-12">
+			<rd-widget>
+				<rd-widget-body>
+					<div class="widget-icon green pull-left">
+						<i class="fa fa-flag-checkered"></i>
+					</div>
+					<div class="title">{{regattas.length}}</div>
+					<div class="comment">Regattas</div>
+				</rd-widget-body>
+			</rd-widget>
+		</div>
+		<div class="col-lg-3 col-md-6 col-xs-12">
+			<rd-widget>
+				<rd-widget-body>
+					<div class="widget-icon red pull-left">
+						<i class="fa fa-users"></i>
+					</div>
+					<div class="title">{{teams.length}}</div>
+					<div class="comment">Teams</div>
+				</rd-widget-body>
+			</rd-widget>
+		</div>
+		<div class="col-lg-3 col-md-6 col-xs-12">
+			<rd-widget>
+				<rd-widget-body>
+					<div class="widget-icon orange pull-left">
+						<i class="fa fa-user"></i>
+					</div>
+					<div class="title">{{teammates.length}}</div>
+					<div class="comment">Teammates</div>
+				</rd-widget-body>
+			</rd-widget>
+		</div>
+		<div class="col-lg-3 col-md-6 col-xs-12">
+			<rd-widget>
+				<rd-widget-body>
+					<div class="widget-icon blue pull-left">
+						<i class="fa fa-life-ring"></i>
+					</div>
+					<div class="title">{{boats.length}}</div>
+					<div class="comment">Boats</div>
+				</rd-widget-body>
+			</rd-widget>
+		</div>
 	</div>
-	<div class="col-lg-3 col-md-6 col-xs-12">
-		<rd-widget>
-			<rd-widget-body>
-				<div class="widget-icon red pull-left">
-					<i class="fa fa-users"></i>
-				</div>
-				<div class="title">16</div>
-				<div class="comment">Teams</div>
-			</rd-widget-body>
-		</rd-widget>
+	
+	<div class="row">
+		<div class="col-lg-6">
+			<rd-widget>
+	      		<rd-widget-header icon="fa-flag-checkered" title="Regatta">
+					<a href="#/regatta/manage">Manage</a>
+	      		</rd-widget-header>
+	      		<rd-widget-body classes="medium no-padding">
+					<div class="table-responsive">
+						<table class="table">
+							<tbody>
+								<tr data-ng-repeat="regatta in regattas"><td>{{regatta.name}}</td><td>{{regatta.team.length}} registered teams</td><td><a href="#/regatta/edit/{{regatta.idRegatta}}"><i class="fa fa-pencil"></i></a><td></td></td></tr>
+							</tbody>
+						</table>
+					</div>
+				</rd-widget-body>
+			</rd-widget>
+		</div>
+		<div class="col-lg-6">
+			<rd-widget>
+				<rd-widget-header icon="fa-users" title="Teams">
+					<input type="text" placeholder="Search" class="form-control input-sm" />
+				</rd-widget-header>
+				<rd-widget-body classes="medium no-padding">
+					<div class="table-responsive">
+						<table class="table">
+							<tbody>
+								<tr data-ng-repeat="team in teams"><td>{{team.name}}</td><td>{{team.teammates.length}} members</td><td><a href="#/team/edit/{{team.idTeam}}"><i class="fa fa-pencil"></i></a><td></td></td></tr>
+							</tbody>
+						</table>
+	        		</div>
+				</rd-widget-body>
+			<rd-widget>
+		</div>
 	</div>
-	<div class="col-lg-3 col-md-6 col-xs-12">
-		<rd-widget>
-			<rd-widget-body>
-				<div class="widget-icon orange pull-left">
-					<i class="fa fa-user"></i>
-				</div>
-				<div class="title">225</div>
-				<div class="comment">People</div>
-			</rd-widget-body>
-		</rd-widget>
-	</div>
-	<div class="col-lg-3 col-md-6 col-xs-12">
-		<rd-widget>
-			<rd-widget-body>
-				<div class="widget-icon blue pull-left">
-					<i class="fa fa-life-ring"></i>
-				</div>
-				<div class="title">62</div>
-				<div class="comment">Boat</div>
-			</rd-widget-body>
-		</rd-widget>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-lg-6">
-		<rd-widget>
-      		<rd-widget-header icon="fa-flag-checkered" title="Regatta">
-				<a href="#/regatta/manage">Manage</a>
-      		</rd-widget-header>
-      		<rd-widget-body classes="medium no-padding">
-				<div class="table-responsive">
-					<table class="table">
-						<tbody>
-							<tr data-ng-repeat="regatta in regattas"><td>{{regatta.name}}</td><td>3 Equipes inscrites</td><td><a href="#/regatta/edit/{{regatta.idRegatta}}"><i class="fa fa-pencil"></i></a><td></td></td></tr>
-						</tbody>
-					</table>
-				</div>
-			</rd-widget-body>
-		</rd-widget>
-	</div>
-	<div class="col-lg-6">
-		<rd-widget>
-			<rd-widget-header icon="fa-users" title="Teams">
-				<input type="text" placeholder="Search" class="form-control input-sm" />
-			</rd-widget-header>
-			<rd-widget-body classes="medium no-padding">
-				<div class="table-responsive">
-					<table class="table">
-						<thead>
-							<tr><th class="text-center">ID</th><th>Username</th><th>Role</th><th>Account</th></tr>
-						</thead>
-						<tbody>
-							<tr><td class="text-center">1</td><td>Joe Bloggs</td><td>Super Admin</td><td>AZ23045</td></tr>
-							<tr><td class="text-center">2</td><td>Timothy Hernandez</td><td>Admin</td><td>AU24783</td></tr>
-							<tr><td class="text-center">3</td><td>Joe Bickham</td><td>User</td><td>AM23781</td></tr>
-						</tbody>
-					</table>
-        		</div>
-			</rd-widget-body>
-		<rd-widget>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-lg-6">
-   		<rd-widget>
-   			<rd-widget-header icon="fa-plus" title="Extras">
-   				<button class="btn btn-sm btn-info">Button</button>
-   			</rd-widget-header>
-   			<rd-widget-body>
-				<div class="message">
-					This is a standard message which will also work the ".no-padding" class, I can also <span class="error">be an error message!</span>
-				</div>
-				<hr />
-				<div class="message">
-					<a href="http://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> is included, so you can use <a href="#" tooltip="I'm a tooltip!">tooltips</a> and all of the other native Bootstrap JS components!
-				</div>
-   			</rd-widget-body>
-   		</rd-widget>
-	</div>
-	<div class="col-lg-6">
-		<rd-widget>
-			<rd-widget-header icon="fa-cog fa-spin" title="Loading Directive">
-				<a href="http://tobiasahlin.com/spinkit/" target="_blank">SpinKit</a>
-			</rd-widget-header>
-			<rd-widget-body>
-				<rd-loading></rd-loading>
-			</rd-widget-body>
-		</rd-widget>
+	
+		<div class="row">
+		<div class="col-lg-6">
+			<rd-widget>
+	      		<rd-widget-header icon="fa-user" title="Teammate">
+	      		</rd-widget-header>
+	      		<rd-widget-body classes="medium no-padding">
+					<div class="table-responsive">
+						<table class="table">
+							<tbody>
+								<tr data-ng-repeat="teammate in teammates"><td>{{teammate.lastname}} {{teammate.firstname}}</td><td><a href="#/teammate/edit/{{teammate.idRegatta}}"><i class="fa fa-pencil"></i></a><td></td></td></tr>
+							</tbody>
+						</table>
+					</div>
+				</rd-widget-body>
+			</rd-widget>
+		</div>
+		<div class="col-lg-6">
+			<rd-widget>
+				<rd-widget-header icon="fa-life-ring" title="Boats">
+				</rd-widget-header>
+				<rd-widget-body classes="medium no-padding">
+					<div class="table-responsive">
+						<table class="table">
+							<tbody>
+								<tr data-ng-repeat="boat in boats"><td>{{boat.name}}</td><td><a href="#/boat/edit/{{boat.idTeam}}"><i class="fa fa-pencil"></i></a><td></td></td></tr>
+							</tbody>
+						</table>
+	        		</div>
+				</rd-widget-body>
+			<rd-widget>
+		</div>
 	</div>
 </div>
