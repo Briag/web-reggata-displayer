@@ -21,16 +21,23 @@
 <div class="row">
 	<div class="col-lg-6">
 		<rd-widget>
-      		<rd-widget-header icon="fa-flag-checkered" title="Active Regatta">
-				<a href="#/regatta/add"><i class="fa fa-plus"></i> Add</a>
+      		<rd-widget-header icon="fa-flag-checkered" title="Properties">
       		</rd-widget-header>
-      		<rd-widget-body classes="medium no-padding bg-success">
-				<div class="table-responsive">
-					<table class="table">
-						<tbody>
-							<tr data-ng-repeat="regatta in regattas"><td>{{regatta.name}}</td><td>3 Equipes inscrites</td><td><a href="#/regatta/edit/{{regatta.idRegatta}}"><i class="fa fa-pencil"></i></a></td></tr>
-						</tbody>
-					</table>
+      		<rd-widget-body classes="medium">
+				<div>
+					<form class="form-horizontal" ng-submit="saveProperties()">
+					    <div class="form-group">
+					        <label for="inputName" class="control-label col-xs-2">Name</label>
+					        <div class="col-xs-10">
+					            <input type="text" ng-model="regatta.name" class="form-control" id="inputName" value="{{regatta.name}}" />
+					        </div>
+					    </div>
+					    <div class="form-group">
+					        <div class="col-xs-offset-2 col-xs-10">
+					            <button type="submit" class="btn btn-primary">Save</button>
+					        </div>
+					    </div>
+				</form>	
 				</div>
 			</rd-widget-body>
 		</rd-widget>
