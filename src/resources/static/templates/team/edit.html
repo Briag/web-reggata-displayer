@@ -1,0 +1,68 @@
+<div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+  <div class="col-xs-12">
+    <alert data-ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+  </div>
+</div>
+<div data-ng-controller="TeamEdit">
+<div class="row">
+	<div class="col-lg-6 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon green pull-left">
+					<i class="fa fa-users"></i>
+				</div>
+				<div class="title">{{team.name}}</div>
+				<div class="comment">{{team.teammates.length}} members</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+		<div class="col-lg-6 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon orange pull-left">
+					<i class="fa fa-life-ring"></i>
+				</div>
+				<div class="title">Boat</div>
+				<div class="comment">{{team.boat.name}}</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6">
+		<rd-widget>
+      		<rd-widget-header icon="fa-user" title="Members">
+
+      		</rd-widget-header>
+      		<rd-widget-body classes="medium no-padding bg-success">
+				<div class="table-responsive">
+					<table class="table">
+						<tbody>
+							<tr data-ng-repeat="teammate in team.teammates"><td>{{teammate.firstname}}</td><td>{{teammate.lastname}} </td><td><a href="#/teammate/edit/{{teammate.idTeammate}}"><i class="fa fa-pencil"></i></a></td></tr>
+						</tbody>
+					</table>
+				</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+	<div class="col-lg-6">
+			<rd-widget>
+				<rd-widget-header icon="fa-users" title="All teammates">
+					<form ng-submit="addTeammate()">
+					<input type="text" ng-model="search.teammate" typeahead-editable='false' typeahead="teammate as teammate.lastname for teammate in teammates | filter:{lastname:$viewValue} | limitTo:4 " class="form-control input-sm" />
+					</form>
+				</rd-widget-header>
+				<rd-widget-body classes="medium no-padding">
+					<div class="table-responsive">
+						<table class="table">
+							<tbody>
+								<tr data-ng-repeat="teammate in teammates"> <td>{{teammate.lastname}}</td><td>{{teammate.firstname}}</td><td><a href="#/team/add/{{team.idTeammate}}"><i class="fa fa-plus"></i></a><td></td></tr>
+							</tbody>
+						</table>
+	        		</div>
+				</rd-widget-body>
+			<rd-widget>
+		</div>
+</div>
+</div>
