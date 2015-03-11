@@ -11,8 +11,8 @@
 				<div class="widget-icon green pull-left">
 					<i class="fa fa-users"></i>
 				</div>
-				<div class="title">{{regatta.name}}</div>
-				<div class="comment">{{regatta.team.length}} registered teams</div>
+				<div class="title">{{regatta.team.length}}</div>
+				<div class="comment">Registered teams</div>
 			</rd-widget-body>
 		</rd-widget>
 	</div>
@@ -21,13 +21,14 @@
 <div class="row">
 	<div class="col-lg-6">
 		<rd-widget>
-      		<rd-widget-header icon="fa-users" title="Registered teams">
+      		<rd-widget-header icon="fa-flag-checkered" title="Active Regatta">
+				<a href="#/regatta/add"><i class="fa fa-plus"></i> Add</a>
       		</rd-widget-header>
       		<rd-widget-body classes="medium no-padding bg-success">
 				<div class="table-responsive">
 					<table class="table">
 						<tbody>
-							<tr data-ng-repeat="team in regatta.team"><td>{{team.name}}</td><td>{{team.teammates.length}} members</td><td><a href="#/team/edit/{{team.idTeam}}"><i class="fa fa-pencil"></i></a></td></tr>
+							<tr data-ng-repeat="regatta in regattas"><td>{{regatta.name}}</td><td>3 Equipes inscrites</td><td><a href="#/regatta/edit/{{regatta.idRegatta}}"><i class="fa fa-pencil"></i></a></td></tr>
 						</tbody>
 					</table>
 				</div>
@@ -36,17 +37,16 @@
 	</div>
 	<div class="col-lg-6">
 			<rd-widget>
-				<rd-widget-header icon="fa-users" title="All teams">
+				<rd-widget-header icon="fa-users" title="Registered teams">
 					<form ng-submit="addTeams()">
 					<input type="text" ng-model="search.team" typeahead-editable='false' typeahead="team as team.name for team in teams | filter:{name:$viewValue} | limitTo:4 " class="form-control input-sm" />
 					</form>
-					<a href="#/regatta/add"><i class="fa fa-plus"></i> Add</a>
 				</rd-widget-header>
 				<rd-widget-body classes="medium no-padding">
 					<div class="table-responsive">
 						<table class="table">
 							<tbody>
-								<tr data-ng-repeat="team in teams"> <td>{{team.name}}</td><td>{{team.teammates.length}} members</td><td><a href="#/team/edit/{{team.idTeam}}"><i class="fa fa-pencil"></i></a><td></td></tr>
+								<tr data-ng-repeat="team in regatta.team"><td>{{team.name}}</td><td>{{team.teammates.length}} members</td><td><a href="#/team/edit/{{team.idTeam}}"><i class="fa fa-pencil"></i></a><td></td></td></tr>
 							</tbody>
 						</table>
 	        		</div>
