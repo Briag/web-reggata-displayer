@@ -4,33 +4,32 @@
   </div>
 </div>
 
-
-<div data-ng-controller="BoatCtrl">
+<div data-ng-controller="TeamCtrl">
 <div class="row">
 	<div class="col-lg-3 col-md-6 col-xs-12">
 		<rd-widget>
 			<rd-widget-body>
 				<div class="widget-icon green pull-left">
-					<i class="fa fa-life-ring"></i>
+					<i class="fa fa-flag-checkered"></i>
 				</div>
-				<div class="title">{{boats.length}}</div>
-				<div class="comment">Boats</div>
+				<div class="title">{{teams.length}}</div>
+				<div class="comment">Teams</div>
 			</rd-widget-body>
 		</rd-widget>
 	</div>
 </div>
 
-
 <div class="row">
 	<div class="col-lg-6">
 		<rd-widget>
-      		<rd-widget-header icon="fa-life-ring" title="Boats">
+      		<rd-widget-header icon="fa-flag-checkered" title="Teams">
+				<a href="#/team/add"><i class="fa fa-plus"></i> Add</a>
       		</rd-widget-header>
       		<rd-widget-body classes="medium no-padding bg-success">
 				<div class="table-responsive">
 					<table class="table">
 						<tbody>
-							<tr data-ng-repeat="boat in boats"><td>{{boat.name}}</td><td><i class="fa fa-pencil"></i></td></tr>
+							<tr data-ng-repeat="team in teams"><td>{{team.name}}</td><td>{{team.teammates.length}} members</td><td><a href="#/team/edit/{{team.idTeam}}"><i class="fa fa-pencil"></i></a></td></tr>
 						</tbody>
 					</table>
 				</div>
