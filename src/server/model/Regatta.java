@@ -1,22 +1,18 @@
 package server.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.voodoodyne.jackson.jsog.JSOGGenerator;
@@ -35,10 +31,11 @@ public class Regatta implements Serializable  {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idRegatta;
 	
-	@Column(name = "name", nullable = false, insertable = false, updatable = false)
+	@Column(name = "name", nullable = false)
 	private String name;
 
-	public Regatta() { }
+	public Regatta() {
+	}
 	
 	
 	public int getIdRegatta() {
@@ -66,5 +63,5 @@ public class Regatta implements Serializable  {
 	private Set<Team> teams;
 	
 	public Set<Team> getTeam() { return teams; }
-    void setTeam(Set<Team> team) { this.teams = team; }
+    public void setTeam(Set<Team> team) { this.teams = team; }
 }

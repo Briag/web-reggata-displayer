@@ -1,6 +1,7 @@
 package server.resource;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -15,6 +16,7 @@ import org.restlet.resource.ServerResource;
 
 import server.Base;
 import server.model.Regatta;
+import server.model.Team;
 
 public class RegattaListResource extends ServerResource {
 	
@@ -39,6 +41,7 @@ public class RegattaListResource extends ServerResource {
 		 	
 	    JacksonRepresentation<Regatta> jsonRepresentation = new JacksonRepresentation<Regatta>(representation, Regatta.class);
         Regatta regatta = jsonRepresentation.getObject();
+        regatta.setTeam(new HashSet<Team>());
 	
 		EntityManager em = Base.getBase().getEntityManager();
 		EntityTransaction tx = em.getTransaction();

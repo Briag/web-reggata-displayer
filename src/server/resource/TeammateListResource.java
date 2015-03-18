@@ -40,7 +40,8 @@ public class TeammateListResource extends ServerResource {
 	    JacksonRepresentation<Teammate> jsonRepresentation = new JacksonRepresentation<Teammate>(representation, Teammate.class);
         Teammate teammate = jsonRepresentation.getObject();
 	
-        System.out.println(teammate.getFirstname());
+        System.out.println("+"+teammate.getFirstname());
+        
 		EntityManager em = Base.getBase().getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();

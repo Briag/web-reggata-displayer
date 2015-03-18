@@ -4,61 +4,27 @@
   </div>
 </div>
 
-<div class="row">
-	<div class="col-lg-3 col-md-6 col-xs-12">
-		<rd-widget>
-			<rd-widget-body>
-				<div class="widget-icon green pull-left">
-					<i class="fa fa-flag-checkered"></i>
-				</div>
-				<div class="title">{{regattas.length}}</div>
-				<div class="comment">Registered teams</div>
-			</rd-widget-body>
-		</rd-widget>
-	</div><div class="col-lg-3 col-md-6 col-xs-12">
-		<rd-widget>
-			<rd-widget-body>
-				<div class="widget-icon red pull-left">
-					<i class="fa fa-flag-checkered"></i>
-				</div>
-				<div class="title">{{regattas.length}}</div>
-				<div class="comment">Offline Regattas</div>
-			</rd-widget-body>
-		</rd-widget>
-	</div>
-</div>
+<div data-ng-controller="RegattaCtrl">
 
 <div class="row">
 	<div class="col-lg-6">
 		<rd-widget>
-      		<rd-widget-header icon="fa-flag-checkered" title="Active Regatta">
-				<a href="#/regatta/add"><i class="fa fa-plus"></i> Add</a>
-      		</rd-widget-header>
-      		<rd-widget-body classes="medium no-padding bg-success">
+			<rd-widget-header icon="fa-flag-checkered" title="Add a regatta">
+			</rd-widget-header>
+			<rd-widget-body classes="medium no-padding bg-success">
+				<form ng-submit="addRegatta()">	
 				<div class="table-responsive">
 					<table class="table">
 						<tbody>
-							<tr data-ng-repeat="regatta in regattas"><td>{{regatta.name}}</td><td>3 Equipes inscrites</td><td><a href="#/regatta/edit/{{regatta.idRegatta}}"><i class="fa fa-pencil"></i></a></td></tr>
+							<tr><td> Name : </td><td><input type="text" class="form-control" ng-model="form.name" id="inputName"></td></tr>
+							<tr><td><button type="submit" class="btn btn-primary">Add</button></td></tr>
 						</tbody>
 					</table>
-				</div>
+	       		</div>
+	       		</form>
 			</rd-widget-body>
 		</rd-widget>
 	</div>
-	<div class="col-lg-6 ">
-		<rd-widget>
-      		<rd-widget-header icon="fa-flag-checkered" title="Offline Regatta">
-				<a href="#/regatta/add"><i class="fa fa-plus"></i> Add</a>
-      		</rd-widget-header>
-      		<rd-widget-body classes="medium no-padding bg-warning">
-				<div class="table-responsive ">
-					<table class="table">
-						<tbody>
-							<tr data-ng-repeat="regatta in regattas"><td>{{regatta.name}}</td><td>3 Equipes inscrites</td><td><a href="#/regatta/edit/{{regatta.idRegatta}}"><i class="fa fa-pencil"></i></a></td></tr>
-						</tbody>
-					</table>
-				</div>
-			</rd-widget-body>
-		</rd-widget>
-	</div>
+</div>		
 </div>
+

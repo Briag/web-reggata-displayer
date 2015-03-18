@@ -34,10 +34,10 @@ public class Team implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idTeam;
 	
-	@Column(name = "name", nullable = false, insertable = false, updatable = false)
+	@Column(name = "name", nullable = false)
 	private String name;
 	
-	@Column(name = "description", nullable = false, insertable = false, updatable = false)
+	@Column(name = "description")
 	private String description;
 
 	public Team() {
@@ -76,7 +76,7 @@ public class Team implements Serializable {
 	private Set<Teammate> teammates;
 	
 	public Set<Teammate> getTeammates() { return teammates; }
-    void setTeammates(Set<Teammate> teammates) { this.teammates = teammates; }
+    public void setTeammates(Set<Teammate> teammates) { this.teammates = teammates; }
     
 	
     

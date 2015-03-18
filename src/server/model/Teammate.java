@@ -33,13 +33,13 @@ public class Teammate implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idTeammate;
 	
-	@Column(name = "lastname", nullable = false, insertable = false, updatable = false)
+	@Column(name = "lastname", nullable = false)
 	private String lastname;
 	
-	@Column(name = "firstname", nullable = false, insertable = false, updatable = false)
+	@Column(name = "firstname", nullable = false)
 	private String firstname;
 	
-	@Column(name = "description", nullable = false, insertable = false, updatable = false)
+	@Column(name = "description")
 	private String description;
 	
 	

@@ -1,6 +1,7 @@
 package server.resource;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -36,15 +37,15 @@ public class TeamListResource extends ServerResource{
 	 @Post("json")
 	 public void create(Representation representation) throws IOException {
 		 	
-	    JacksonRepresentation<Teammate> jsonRepresentation = new JacksonRepresentation<Teammate>(representation, Teammate.class);
-        Teammate teammate = jsonRepresentation.getObject();
+	    JacksonRepresentation<Team> jsonRepresentation = new JacksonRepresentation<Team>(representation, Team.class);
+        Team team = jsonRepresentation.getObject();
+        team.setTeammates(new HashSet<Teammate>());
 	
-        System.out.println(teammate.getFirstname());
 		EntityManager em = Base.getBase().getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
-		em.persist(teammate);	        
+		em.persist(team);	        
 	    tx.commit();
 	}	
 

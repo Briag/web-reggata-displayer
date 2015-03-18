@@ -72,7 +72,7 @@
 		<div class="col-lg-6">
 			<rd-widget>
 				<rd-widget-header icon="fa-users" title="Teams">
-					<input type="text" placeholder="Search" class="form-control input-sm" />
+					<a href="#/team/manage">Manage</a>
 				</rd-widget-header>
 				<rd-widget-body classes="medium no-padding">
 					<div class="table-responsive">
@@ -91,12 +91,13 @@
 		<div class="col-lg-6">
 			<rd-widget>
 	      		<rd-widget-header icon="fa-user" title="Teammate">
+	      			<a href="#/teammate/manage">Manage</a>
 	      		</rd-widget-header>
 	      		<rd-widget-body classes="medium no-padding">
 					<div class="table-responsive">
 						<table class="table">
 							<tbody>
-								<tr data-ng-repeat="teammate in teammates"><td>{{teammate.lastname}} {{teammate.firstname}}</td><td><a href="#/teammate/edit/{{teammate.idRegatta}}"><i class="fa fa-pencil"></i></a><td></td></td></tr>
+								<tr data-ng-repeat="teammate in teammates"><td>{{teammate.lastname}} {{teammate.firstname}}</td></tr>
 							</tbody>
 						</table>
 					</div>
@@ -106,12 +107,13 @@
 		<div class="col-lg-6">
 			<rd-widget>
 				<rd-widget-header icon="fa-life-ring" title="Boats">
+					<a href="#/boat/manage">Manage</a>
 				</rd-widget-header>
 				<rd-widget-body classes="medium no-padding">
 					<div class="table-responsive">
 						<table class="table">
 							<tbody>
-								<tr data-ng-repeat="boat in boats"><td>{{boat.name}}</td><td><a href="#/boat/edit/{{boat.idTeam}}"><i class="fa fa-pencil"></i></a><td></td></td></tr>
+								<tr data-ng-repeat="boat in boats"><td>{{boat.name}}</td></tr>
 							</tbody>
 						</table>
 	        		</div>
