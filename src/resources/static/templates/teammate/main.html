@@ -31,7 +31,7 @@
 				<div class="table-responsive">
 					<table class="table">
 						<tbody>
-							<tr data-ng-repeat="teammate in teammates"><td>{{teammate.lastname}}</td><td>{{teammate.firstname}}</td><td><a href='' ng-click='removeTeammate(teammate)'><i class="fa fa-times"></i></a></td></tr>
+							<tr data-ng-repeat="teammate in teammates | orderBy:'lastname'"><td>{{teammate.lastname}}</td><td>{{teammate.firstname}}</td><td><a href='' ng-click='removeTeammate(teammate)'><i class="fa fa-times"></i></a></td></tr>
 						</tbody>
 					</table>
 				</div>

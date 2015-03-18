@@ -28,7 +28,7 @@
 				<div class="table-responsive">
 					<table class="table">
 						<tbody>
-							<tr data-ng-repeat="team in regatta.team"><td>{{team.name}}</td><td>{{team.teammates.length}} members</td><td><a href='' ng-click='removeTeam(team)'><i class="fa fa-times"></i></a></td></tr>
+							<tr data-ng-repeat="team in regatta.team"><td class="col-md-5">{{team.name}}</td><td class="col-md-5">{{team.teammates.length}} members</td><td class="col-md-1"><a href='' ng-click='removeTeam(team)'><i class="fa fa-times"></i></a></td></tr>
 						</tbody>
 					</table>
 				</div>
@@ -47,7 +47,7 @@
 					<div class="table-responsive">
 						<table class="table">
 							<tbody>
-								<tr data-ng-repeat="team in teams | filter: { name: search.name}"  ng-if="isTeamRegistredInRegatta(team) == false"> <td>{{team.name}}</td><td>{{team.teammates.length}} members</td><td><a href='' ng-click='addTeam(team)'><i class="fa fa-plus"></i></a><td></td></tr>
+								<tr data-ng-repeat="team in teams | filter: { name: search.name}"  ng-if="isTeamRegistredInRegatta(team) == false"> <td class="col-md-5">{{team.name}}</td><td class="col-md-5">{{team.teammates.length}} members</td><td class="col-md-1"><a href='' ng-click='addTeam(team)'><i class="fa fa-plus"></i></a></td></tr>
 							</tbody>
 						</table>
 	        		</div>
