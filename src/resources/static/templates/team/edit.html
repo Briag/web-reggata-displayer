@@ -39,7 +39,7 @@
 				<div class="table-responsive">
 					<table class="table">
 						<tbody>
-							<tr data-ng-repeat="teammate in team.teammates"><td>{{teammate.firstname}}</td><td>{{teammate.lastname}} </td><td><a href="" ng-click="removeTeammate(teammate)"><i class="fa fa-times"></i></a></td></tr>
+							<tr data-ng-repeat="teammate in team.teammates"><td class="col-md-5">{{teammate.firstname}}</td><td class="col-md-5">{{teammate.lastname}} </td><td class="col-md-1"><a href="" ng-click="removeTeammate(teammate)"><i class="fa fa-times"></i></a></td></tr>
 						</tbody>
 					</table>
 				</div>
@@ -58,7 +58,7 @@
 					<div class="table-responsive">
 						<table class="table">
 							<tbody>
-								<tr data-ng-repeat="teammate in teammates | filter: nameFilter "  ng-if="isTeammateRegistredInTeam(teammate) == false"> <td>{{teammate.lastname}}</td><td>{{teammate.firstname}}</td><td><a href='' ng-click='addTeammate(teammate)'><i class="fa fa-plus"></i></a><td></td></tr>
+								<tr data-ng-repeat="teammate in teammates | filter: nameFilter "  ng-if="isTeammateRegistredInTeam(teammate) == false"> <td class="col-md-5">{{teammate.lastname}}</td><td class="col-md-5">{{teammate.firstname}}</td><td class="col-md-1"><a href='' ng-click='addTeammate(teammate)'><i class="fa fa-plus"></i></a></td></tr>
 							</tbody>
 						</table>
 	        		</div>

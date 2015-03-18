@@ -5,9 +5,9 @@
     <persistence-unit name="tphibernate" >
         <properties>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.username" value="regatta" />
-            <property name="hibernate.connection.password" value="regatta" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/regatta" />
+            <property name="hibernate.connection.username" value="root" />
+            <property name="hibernate.connection.password" value="" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost/regatta" />
             
             <property name="hibernate.show_sql" value="true" />
             
