@@ -117,7 +117,7 @@ CREATE TABLE `team` (
 
 LOCK TABLES `team` WRITE;
 /*!40000 ALTER TABLE `team` DISABLE KEYS */;
-INSERT INTO `team` VALUES (1,'Jumacabi','',1),(2,'Goldfinger',NULL,2);
+INSERT INTO `team` VALUES (1,'Team Rocket','',1),(2,'Team Burton',NULL,2);
 /*!40000 ALTER TABLE `team` ENABLE KEYS */;
 UNLOCK TABLES;
 

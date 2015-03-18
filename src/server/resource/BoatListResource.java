@@ -37,7 +37,7 @@ public class BoatListResource extends ServerResource {
 		 	
 	    JacksonRepresentation<Boat> jsonRepresentation = new JacksonRepresentation<Boat>(representation, Boat.class);
         Boat boat = jsonRepresentation.getObject();
-	
+        System.out.println("+"+boat.getName());
 		EntityManager em = Base.getBase().getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();

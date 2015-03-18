@@ -23,7 +23,7 @@ public class Boat  implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idBoat;
 	
-	@Column(name = "name", nullable = false, insertable = false, updatable = false)
+	@Column(name = "name", nullable = false)
 	private String name;
 
 	@Column(name = "photo")
