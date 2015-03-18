@@ -1,0 +1,28 @@
+<div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+  <div class="col-xs-12">
+    <alert data-ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+  </div>
+</div>
+
+<div data-ng-controller="BoatEdit">
+
+<div class="row">
+	<div class="col-lg-6">
+		<rd-widget>
+			<rd-widget-header icon="fa-life-ring" title="Edit the boat">
+			</rd-widget-header>
+			<rd-widget-body classes="medium no-padding bg-success">	
+				<div class="table-responsive">
+					<table class="table">
+						<tbody>
+							<tr><td> Name : </td><td><input ng-model="boat.name" type="text" value="{{boat.name}}"/></td></tr>
+							<tr><td><button ng-click="saveProperties()" class="btn btn-primary">Save changes</button></td></tr>
+						</tbody>
+					</table>
+	       		</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+</div>		
+</div>
+

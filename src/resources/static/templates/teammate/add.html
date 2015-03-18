@@ -1,0 +1,31 @@
+<div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+  <div class="col-xs-12">
+    <alert data-ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+  </div>
+</div>
+
+<div data-ng-controller="TeammateCtrl">
+
+<div class="row">
+	<div class="col-lg-6">
+		<rd-widget>
+			<rd-widget-header icon="fa-users" title="Add a teammate">
+			</rd-widget-header>
+			<rd-widget-body classes="medium no-padding bg-success">
+				<form ng-submit="addTeammate()">	
+				<div class="table-responsive">
+					<table class="table">
+						<tbody>
+							<tr><td> Lastname : </td><td><input type="text" class="form-control" ng-model="form.lastname" id="inputLastname"></td></tr>
+							<tr><td> Firstname : </td><td><input type="text" class="form-control" ng-model="form.firstname" id="inputFirstame"></td></tr>
+							<tr><td><button type="submit" class="btn btn-primary">Add</button></td></tr>
+						</tbody>
+					</table>
+	       		</div>
+	       		</form>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+</div>		
+</div>
+

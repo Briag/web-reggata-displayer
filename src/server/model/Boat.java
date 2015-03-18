@@ -17,7 +17,7 @@ import com.voodoodyne.jackson.jsog.JSOGGenerator;
 @JsonIdentityInfo(generator=JSOGGenerator.class)
 public class Boat  implements Serializable {
 
-	private static final long serialVersionUID = 5624500974397501979L;
+	private static final long serialVersionUID = 9L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
