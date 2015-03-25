@@ -4,40 +4,29 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.cfg.Configuration;
+
 public class Base {
 
-	static Base base;
+	private static SessionFactory sessionFactory; 
 	
-	EntityManagerFactory emf = null;
-	EntityManager em = null;
-
-	static public Base getBase() {
-		if( base == null) {
-			base = new Base();
-			base.ouvrir();
-		}
-		
-		return base;
-			
-	}
+	@SuppressWarnings("deprecation")
+	public static void open() { 
+		try { 
+			sessionFactory = new AnnotationConfiguration().configure("/resources/hibernate.cfg.xml").buildSessionFactory();
+			} 
+		catch (Throwable ex) { throw new ExceptionInInitializerError(ex); 
+		} 
+	} 
 	
-	static public void closeBase() {
-		base.fermer();
-		base = null;
-	}
+	public static SessionFactory getSessionFactory() { return sessionFactory; }
 	
-	public EntityManager getEntityManager() {
-		return this.em;
-	}
 	
-	private void ouvrir() {
-		emf = Persistence.createEntityManagerFactory("tphibernate");
-		em = emf.createEntityManager();
+	public static Session getSession() {
+		return sessionFactory.openSession();
 	}
-	
-	private void fermer() {
-		em.close();
-		emf.close();
-	}
-
 }

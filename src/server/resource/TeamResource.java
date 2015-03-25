@@ -4,16 +4,15 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.restlet.ext.jackson.JacksonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
 import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
+import org.hibernate.Query;
 
 import server.Base;
 import server.model.Team;
@@ -28,24 +27,23 @@ public class TeamResource extends ServerResource{
 		
 		Map<String, Object> attributes = getRequest().getAttributes();
 		
-		EntityManager em = Base.getBase().getEntityManager();
+		Session s = Base.getSession();
 
-
-		
 		//Query
-		Query query = em.createQuery(
+		Query query = s.createQuery(
 				"select t from Team t where id = :id")
 				.setParameter("id", Integer.valueOf((String) attributes.get("idTeam")));
 		
 		System.out.println(attributes.toString());
 		
-		List results = query.getResultList();
+		List results = query.list();
 		Team team = null;
 		if(!results.isEmpty()){
 		    // ignores multiple results
 		    team = (Team) results.get(0);
 		}
 
+		s.close();
 		return new JacksonRepresentation<Team>(team);
 	}
 	
@@ -55,13 +53,13 @@ public class TeamResource extends ServerResource{
 	        JacksonRepresentation<Team> jsonRepresentation = new JacksonRepresentation<Team>(representation, Team.class);
 	        Team team = jsonRepresentation.getObject();
 	        
-
-			EntityManager em = Base.getBase().getEntityManager();
-			EntityTransaction tx = em.getTransaction();
-			tx.begin();
+			Session s = Base.getSession();
+			Transaction t = s.beginTransaction();
 			
-			em.merge(team);	        
-	        tx.commit();
+			s.merge(team); 
+			
+			t.commit();
+			s.close();
 	    }
 	 
 	    @Delete
@@ -70,12 +68,11 @@ public class TeamResource extends ServerResource{
 			
 			Map<String, Object> attributes = getRequest().getAttributes();
 			
-			EntityManager em = Base.getBase().getEntityManager();
 
-			EntityTransaction tx = em.getTransaction();
-			tx.begin();
+			Session s = Base.getSession();
+			Transaction t = s.beginTransaction();
 			
-	    	Query query = em.createQuery(
+	    	Query query = s.createQuery(
 					"delete Team where id = :id")
 					.setParameter("id", Integer.valueOf((String) attributes.get("idTeam")));
 			
@@ -83,7 +80,8 @@ public class TeamResource extends ServerResource{
 	    	
 	    	query.executeUpdate();
 	    	
-	        tx.commit();
+	        t.commit();
+			s.close();
 	    }
 	
 }

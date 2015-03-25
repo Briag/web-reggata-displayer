@@ -104,7 +104,7 @@ DROP TABLE IF EXISTS `team`;
 CREATE TABLE `team` (
   `idTeam` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `description` text,
+  `description` varchar(255),
   `Boat_idBoat` int(11) NOT NULL,
   PRIMARY KEY (`idTeam`,`Boat_idBoat`),
   KEY `fk_Team_Boat_idx` (`Boat_idBoat`),

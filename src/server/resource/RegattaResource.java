@@ -4,10 +4,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.restlet.ext.jackson.JacksonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Delete;
@@ -28,23 +27,24 @@ public class RegattaResource extends ServerResource {
 		
 		Map<String, Object> attributes = getRequest().getAttributes();
 		
-		EntityManager em = Base.getBase().getEntityManager();
+		Session s = Base.getSession();
 
 		// création d'une salle
 		
 		//Query
-		Query query = em.createQuery(
+		Query query = s.createQuery(
 				"select r from Regatta r where id = :id")
 				.setParameter("id", Integer.valueOf((String) attributes.get("idRegatta")));
 		
 		System.out.println(attributes.toString());
 		
-		List results = query.getResultList();
+		List results = query.list();
 		Regatta regatta = null;
 		if(!results.isEmpty()){
 		    // ignores multiple results
 		    regatta = (Regatta) results.get(0);
 		}
+		s.close();
 
 		return new JacksonRepresentation<Regatta>(regatta);
 	}
@@ -55,13 +55,13 @@ public class RegattaResource extends ServerResource {
 	        JacksonRepresentation<Regatta> jsonRepresentation = new JacksonRepresentation<Regatta>(representation, Regatta.class);
 	        Regatta regatta = jsonRepresentation.getObject();
 	        
-
-			EntityManager em = Base.getBase().getEntityManager();
-			EntityTransaction tx = em.getTransaction();
-			tx.begin();
+	        Session s = Base.getSession();
+			Transaction t = s.beginTransaction();
 			
-			em.merge(regatta);	        
-	        tx.commit();
+			s.merge(regatta);	        
+	        
+			t.commit();
+			s.close();
 	    }
 	 
 	    @Delete
@@ -70,12 +70,10 @@ public class RegattaResource extends ServerResource {
 			
 			Map<String, Object> attributes = getRequest().getAttributes();
 			
-			EntityManager em = Base.getBase().getEntityManager();
-
-			EntityTransaction tx = em.getTransaction();
-			tx.begin();
+			Session s = Base.getSession();
+			Transaction t = s.beginTransaction();
 			
-	    	Query query = em.createQuery(
+	    	Query query = s.createQuery(
 					"delete Regatta where id = :id")
 					.setParameter("id", Integer.valueOf((String) attributes.get("idRegatta")));
 			
@@ -83,7 +81,8 @@ public class RegattaResource extends ServerResource {
 	    	
 	    	query.executeUpdate();
 	    	
-	        tx.commit();
+	        t.commit();
+			s.close();
 	    }
 	
 }

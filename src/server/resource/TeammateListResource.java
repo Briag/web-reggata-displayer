@@ -3,14 +3,15 @@ package server.resource;
 import java.io.IOException;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.restlet.ext.jackson.JacksonRepresentation;
 import org.restlet.representation.Representation;
+import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
+import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 
 import server.Base;
@@ -23,13 +24,14 @@ public class TeammateListResource extends ServerResource {
 	@Get
 	public Representation list() {
 		
-		EntityManager em = Base.getBase().getEntityManager();
-
+		Session s = Base.getSession();
+		
 		//Query
-		Query query = em.createQuery(
+		Query query = s.createQuery(
 				"select t from Teammate t");
 				
-		List<Teammate> results = query.getResultList();
+		List<Teammate> results = query.list();
+		s.close();
 
 	    return new JacksonRepresentation<List<Teammate>>(results);
 	}
@@ -39,15 +41,12 @@ public class TeammateListResource extends ServerResource {
 		 	
 	    JacksonRepresentation<Teammate> jsonRepresentation = new JacksonRepresentation<Teammate>(representation, Teammate.class);
         Teammate teammate = jsonRepresentation.getObject();
-	
-        System.out.println("+"+teammate.getFirstname());
-        
-		EntityManager em = Base.getBase().getEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		em.persist(teammate);	        
-	    tx.commit();
+	        
+        Session s = Base.getSession();
+		Transaction t = s.beginTransaction();
+		s.persist(teammate);	        
+	    t.commit();
+		s.close();
 	}	
 
 }

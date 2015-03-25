@@ -15,10 +15,10 @@ public class Launcher extends Component {
         getServers().add(server);
         //server.getContext().getParameters().set("tracing", "true");
 
+        Base.open();
         getClients().add(Protocol.CLAP);
 
         getDefaultHost().attachDefault(new RegattaApplication());
-        Base.getBase();
         
         System.out.println("Server started on port 8000.");
         System.out.println("Application is now available on http://localhost:8000/web/index.html");

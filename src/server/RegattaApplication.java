@@ -13,6 +13,7 @@ import server.resource.TeamListResource;
 import server.resource.TeamResource;
 import server.resource.TeammateListResource;
 import server.resource.TeammateResource;
+import server.resource.Authentification;
 
 public class RegattaApplication extends Application {
 
@@ -44,7 +45,8 @@ public class RegattaApplication extends Application {
         
         router.attach("/rest/team/{idTeam}",TeamResource.class);
         router.attach("/rest/team",TeamListResource.class);
-        
+
+        router.attach("/rest/auth",Authentification.class);
         
         return router;
     }

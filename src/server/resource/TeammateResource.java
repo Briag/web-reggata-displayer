@@ -4,10 +4,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.restlet.ext.jackson.JacksonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Delete;
@@ -28,24 +27,23 @@ public class TeammateResource extends ServerResource{
 		
 		
 		Map<String, Object> attributes = getRequest().getAttributes();
-		
-		EntityManager em = Base.getBase().getEntityManager();
 
-
+		Session s = Base.getSession();
 		
 		//Query
-		Query query = em.createQuery(
+		Query query = s.createQuery(
 				"select t from Teammate t where id = :id")
 				.setParameter("id", Integer.valueOf((String) attributes.get("idTeammate")));
 		
 		System.out.println(attributes.toString());
 		
-		List results = query.getResultList();
+		List results = query.list();
 		Teammate teammate = null;
 		if(!results.isEmpty()){
 		    // ignores multiple results
 		    teammate = (Teammate) results.get(0);
 		}
+		s.close();
 		
 		return new JacksonRepresentation<Teammate>(teammate);
 	}
@@ -57,12 +55,14 @@ public class TeammateResource extends ServerResource{
 	        Teammate teammate = jsonRepresentation.getObject();
 	        
 
-			EntityManager em = Base.getBase().getEntityManager();
-			EntityTransaction tx = em.getTransaction();
-			tx.begin();
+
+			Session s = Base.getSession();
+			Transaction t = s.beginTransaction();
 			
-			em.merge(teammate);	        
-	        tx.commit();
+			s.merge(teammate);	   
+    
+	        t.commit();
+			s.close();
 	    }
 	 
 	    @Delete
@@ -71,12 +71,11 @@ public class TeammateResource extends ServerResource{
 			
 			Map<String, Object> attributes = getRequest().getAttributes();
 			
-			EntityManager em = Base.getBase().getEntityManager();
 
-			EntityTransaction tx = em.getTransaction();
-			tx.begin();
+			Session s = Base.getSession();
+			Transaction t = s.beginTransaction();
 			
-	    	Query query = em.createQuery(
+	    	Query query = s.createQuery(
 					"delete Teammate where id = :id")
 					.setParameter("id", Integer.valueOf((String) attributes.get("idTeammate")));
 			
@@ -84,7 +83,8 @@ public class TeammateResource extends ServerResource{
 	    	
 	    	query.executeUpdate();
 	    	
-	        tx.commit();
+	        t.commit();
+			s.close();
 	        
 	    }
 	
