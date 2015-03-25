@@ -25,8 +25,7 @@ public class RegattaListResource extends ServerResource {
 		
 		EntityManager em = Base.getBase().getEntityManager();
 
-		// création d'une salle
-		
+	
 		//Query
 		Query query = em.createQuery(
 				"select r from Regatta r");
