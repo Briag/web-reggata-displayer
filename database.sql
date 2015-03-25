@@ -79,6 +79,7 @@ DROP TABLE IF EXISTS `regatta`;
 CREATE TABLE `regatta` (
   `idRegatta` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
+  `active` boolean NOT NULL,
   PRIMARY KEY (`idRegatta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -89,7 +90,7 @@ CREATE TABLE `regatta` (
 
 LOCK TABLES `regatta` WRITE;
 /*!40000 ALTER TABLE `regatta` DISABLE KEYS */;
-INSERT INTO `regatta` VALUES (1,'Coupe Du Trimaran'),(2,'Trophée Luc Liardet'),(3,'Coupe des Tas de Pois'),(4,'La Solitaire');
+INSERT INTO `regatta` VALUES (1,'Coupe Du Trimaran', true),(2,'Trophée Luc Liardet', false),(3,'Coupe des Tas de Pois', true),(4,'La Solitaire', true);
 /*!40000 ALTER TABLE `regatta` ENABLE KEYS */;
 UNLOCK TABLES;
 

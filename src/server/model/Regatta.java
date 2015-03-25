@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,6 +35,11 @@ public class Regatta implements Serializable  {
 	@Column(name = "name", nullable = false)
 	private String name;
 
+	@Column(name = "active", nullable = false)
+	private boolean active;
+	
+
+
 	public Regatta() {
 	}
 	
@@ -54,7 +60,17 @@ public class Regatta implements Serializable  {
 		this.name = name;
 	};
 	
-	@ManyToMany
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	
+	
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name="inscription",
 			joinColumns = @JoinColumn( name="Regatta_idRegatta"),

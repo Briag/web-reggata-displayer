@@ -44,7 +44,7 @@ public class Teammate implements Serializable {
 	
 	
 
-	@ManyToMany(mappedBy="teammates")	
+	@ManyToMany(fetch = FetchType.EAGER,mappedBy="teammates")	
 	private Set<Team> teams;
 	
 

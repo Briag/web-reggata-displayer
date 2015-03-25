@@ -10,7 +10,6 @@
             <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/regatta" />
             
             <property name="hibernate.show_sql" value="true" />
-            
         </properties>
     </persistence-unit>
 </persistence>
