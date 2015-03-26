@@ -153,6 +153,13 @@ UNLOCK TABLES;
 --
 -- Table structure for table `teammate`
 --
+CREATE TABLE `user` (
+	`idUser` int(11) NOT NULL AUTO_INCREMENT,
+    `password` varchar(45),
+    `username` varchar(45),
+    PRIMARY KEY(`idUser`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 DROP TABLE IF EXISTS `teammate`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -161,7 +168,7 @@ CREATE TABLE `teammate` (
   `idTeammate` int(11) NOT NULL AUTO_INCREMENT,
   `lastname` varchar(45) DEFAULT NULL,
   `firstname` varchar(45) DEFAULT NULL,
-  `description` text,
+  `description` varchar(255),
   PRIMARY KEY (`idTeammate`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
